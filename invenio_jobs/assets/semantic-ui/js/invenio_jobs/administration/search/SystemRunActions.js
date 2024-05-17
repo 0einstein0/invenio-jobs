@@ -24,9 +24,7 @@ export class SystemRunActions extends Component {
   };
 
   render() {
-    const actionItems = [
-      { key: "stop", label: "Stop", icon: "stop" },
-    ];
+    const actionItems = [{ key: "stop", label: "Stop", icon: "stop" }];
 
     const generateActions = () => {
       return (

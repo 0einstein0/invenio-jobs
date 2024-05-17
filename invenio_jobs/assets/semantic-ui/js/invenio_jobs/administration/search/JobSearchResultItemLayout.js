@@ -35,7 +35,7 @@ class SearchResultItemComponent extends Component {
           collapsing
           className=""
         >
-          {toRelativeTime(result.last_run_start_time, i18next.language )}
+          {toRelativeTime(result.last_run_start_time, i18next.language)}
         </Table.Cell>
         <Table.Cell
           collapsing
@@ -70,7 +70,7 @@ class SearchResultItemComponent extends Component {
           data-label={i18next.t("Next run")}
           className="word-break-all"
         >
-          {toRelativeTime(result.next_run, i18next.language )}
+          {toRelativeTime(result.next_run, i18next.language)}
         </Table.Cell>
         <Table.Cell collapsing>
           <SystemJobActions />

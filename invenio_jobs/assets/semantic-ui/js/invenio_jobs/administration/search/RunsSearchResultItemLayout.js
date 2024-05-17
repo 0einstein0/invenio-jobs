@@ -36,7 +36,7 @@ class SearchResultItemComponent extends Component {
           collapsing
           className=""
         >
-          {toRelativeTime(result.start_time, i18next.language )}
+          {toRelativeTime(result.start_time, i18next.language)}
         </Table.Cell>
         <Table.Cell
           key={`run-last-run-${result.message}`}
@@ -52,7 +52,10 @@ class SearchResultItemComponent extends Component {
           collapsing
           className="word-break-all"
         >
-          <UserListItemCompact user={result.started_by.user} id={result.started_by.user.id} />
+          <UserListItemCompact
+            user={result.started_by.user}
+            id={result.started_by.user.id}
+          />
         </Table.Cell>
         <Table.Cell collapsing>
           <SystemRunActions />
