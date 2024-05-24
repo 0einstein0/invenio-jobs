@@ -9,6 +9,7 @@
 import React, { Component } from "react";
 import { Button, Icon } from "semantic-ui-react";
 import { i18next } from "@translations/invenio_app_rdm/i18next";
+import { RunButton } from "./RunButton";
 
 export class SystemJobActions extends Component {
   handleAction = async (action) => {
@@ -23,11 +24,6 @@ export class SystemJobActions extends Component {
         icon: "calendar",
         notificationTitle: i18next.t("Schedule"),
       },
-      deactivate: {
-        label: i18next.t("Run now"),
-        icon: "pause",
-        notificationTitle: i18next.t("Run now"),
-      },
     }[action];
 
     return actionConfig;
@@ -37,7 +33,6 @@ export class SystemJobActions extends Component {
     const actionItems = [
       { key: "settings", label: "Settings", icon: "cog" },
       { key: "schedule", label: "Schedule", icon: "calendar" },
-      { key: "run", label: "Run now", icon: "play" },
     ];
 
     const generateActions = () => {
@@ -49,6 +44,7 @@ export class SystemJobActions extends Component {
               {i18next.t(actionItem.label)}
             </Button>
           ))}
+          <RunButton config={this.props.runArgs} />
         </>
       );
     };
