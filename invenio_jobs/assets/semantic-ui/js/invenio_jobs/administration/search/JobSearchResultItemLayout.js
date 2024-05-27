@@ -88,7 +88,7 @@ class SearchResultItemComponent extends Component {
           </Table.Cell>
         ) : (
           <Table.Cell
-            key={`job-user`}
+            key="job-user"
             data-label={i18next.t("Started by")}
             collapsing
             className="word-break-all"
