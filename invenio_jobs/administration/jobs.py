@@ -68,7 +68,6 @@ class JobsDetailsView(AdminResourceListView):
 
     def get_api_endpoint(self, pid_value=None):
         """overwrite get_api_endpoint to a ccept pid_value."""
-
         return f"/api/jobs/{pid_value}/runs"
 
     url = "/jobs/<pid_value>"
