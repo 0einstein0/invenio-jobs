@@ -53,9 +53,9 @@ class SearchResultItemComponent extends Component {
           collapsing
           className=""
         >
-          { result.started_at === null ?
-          "Waiting..." :
-          toRelativeTime(result.started_at, i18next.language)}
+          {result.started_at === null
+            ? "Waiting..."
+            : toRelativeTime(result.started_at, i18next.language)}
         </Table.Cell>
         <Table.Cell
           key={`run-last-run-${result.message}`}
@@ -65,7 +65,7 @@ class SearchResultItemComponent extends Component {
         >
           {result.title}
         </Table.Cell>
-        { result.started_by ? (
+        {result.started_by ? (
           <Table.Cell
             key={`job-user-${result.started_by.id}`}
             data-label={i18next.t("Started by")}
