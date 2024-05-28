@@ -65,17 +65,28 @@ class SearchResultItemComponent extends Component {
         >
           {result.title}
         </Table.Cell>
-        <Table.Cell
-          key={`run-user-${result.started_by.id}`}
-          data-label={i18next.t("Started by")}
-          collapsing
-          className="word-break-all"
-        >
-          <UserListItemCompact
-            user={result.started_by}
-            id={result.started_by.id}
-          />
-        </Table.Cell>
+        { result.started_by ? (
+          <Table.Cell
+            key={`job-user-${result.started_by.id}`}
+            data-label={i18next.t("Started by")}
+            collapsing
+            className="word-break-all"
+          >
+            <UserListItemCompact
+              user={result.started_by}
+              id={result.started_by.id}
+            />
+          </Table.Cell>
+        ) : (
+          <Table.Cell
+            key="job-user"
+            data-label={i18next.t("Started by")}
+            collapsing
+            className="word-break-all"
+          >
+            System
+          </Table.Cell>
+        )}
         <Table.Cell collapsing>
           <SystemRunActions result={result} />
         </Table.Cell>
