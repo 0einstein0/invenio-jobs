@@ -88,7 +88,11 @@ class SearchResultItemComponent extends Component {
           </Table.Cell>
         )}
         <Table.Cell collapsing>
-          <SystemRunActions result={result} />
+          {result.status === "RUNNING" || result.status === "PENDING" ? (
+            <SystemRunActions result={result} />
+          ) : (
+            ""
+          )}
         </Table.Cell>
       </Table.Row>
     );
