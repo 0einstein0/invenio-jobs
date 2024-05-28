@@ -8,15 +8,8 @@
 
 """Invenio administration view module."""
 
-from functools import partial
-
-from flask import current_app
-from invenio_administration.views.base import (
-    AdminResourceDetailView,
-    AdminResourceListView,
-)
+from invenio_administration.views.base import AdminResourceListView
 from invenio_i18n import lazy_gettext as _
-from invenio_search_ui.searchconfig import search_app_config
 
 
 class JobsListView(AdminResourceListView):
