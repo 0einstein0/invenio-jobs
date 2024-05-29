@@ -29,7 +29,7 @@ export const RunButton = ({ config }) => {
       direction="left"
     >
       <DropdownMenu>
-        <Form className="p-10">
+        <Form className="p-10" >
           {Object.keys(config).map((key) => (
             <FormInput
               key={key}
