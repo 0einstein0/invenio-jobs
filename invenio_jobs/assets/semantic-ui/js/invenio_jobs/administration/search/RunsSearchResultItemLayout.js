@@ -45,7 +45,9 @@ class SearchResultItemComponent extends Component {
             color="grey"
             value={result.active === false}
           />
-          <a href={result.links.admin_self_html}>{result.created}</a>
+          <a href={result.links.admin_self_html}>
+            {result.created.slice(0, 16)}
+          </a>
         </Table.Cell>
         <Table.Cell
           key={`run-last-run-${result.status}`}
