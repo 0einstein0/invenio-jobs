@@ -14,6 +14,7 @@ import { UserListItemCompact, toRelativeTime } from "react-invenio-forms";
 import { withState } from "react-searchkit";
 import { Popup, Table } from "semantic-ui-react";
 import { RunButton } from "./RunButton";
+import { StatusFormatter } from "./StatusFormatter";
 
 class SearchResultItemComponent extends Component {
   render() {
@@ -42,28 +43,15 @@ class SearchResultItemComponent extends Component {
           className=""
         >
           {result.last_run && (
-            <BoolFormatter
-              tooltip={i18next.t("Status")}
-              icon="check"
-              color="green"
-              value={result.last_run.status === "Success"}
-            />
-          )}
-          {result.last_run && (
-            <BoolFormatter
-              tooltip={i18next.t("Status")}
-              icon="ban"
-              color="red"
-              value={result.last_run.status === "Failed"}
-            />
-          )}
+            <StatusFormatter status={result.last_run.status} />
+          )} 
           {result.last_run ? (
             <Popup
               content={result.last_run.created}
               trigger={
-                <div>
+                <span>
                   {toRelativeTime(result.last_run.created, i18next.language)}
-                </div>
+                </span>
               }
             />
           ) : (
