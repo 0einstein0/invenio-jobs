@@ -7,13 +7,13 @@
  */
 
 import { BoolFormatter } from "@js/invenio_administration";
-import { SystemJobActions } from "./SystemJobActions";
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { Table, Popup } from "semantic-ui-react";
-import { withState } from "react-searchkit";
-import { i18next } from "@translations/invenio_app_rdm/i18next";
 import { UserListItemCompact, toRelativeTime } from "react-invenio-forms";
+import { withState } from "react-searchkit";
+import { Popup, Table } from "semantic-ui-react";
+import { RunButton } from "./RunButton";
 
 class SearchResultItemComponent extends Component {
   render() {
@@ -103,7 +103,7 @@ class SearchResultItemComponent extends Component {
             : toRelativeTime(result.next_run, i18next.language) ?? "−"}
         </Table.Cell>
         <Table.Cell collapsing>
-          <SystemJobActions runArgs={result.default_args ?? {}} />
+          <RunButton config={result.default_args} />
         </Table.Cell>
       </Table.Row>
     );

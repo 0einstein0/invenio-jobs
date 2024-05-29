@@ -36,30 +36,12 @@ class JobsListView(AdminResourceListView):
         "last_run_start_time": {"text": _("Last run"), "order": 2, "width": 3},
         "user": {"text": _("Started by"), "order": 3, "width": 3},
         "next_run": {"text": _("Next run"), "order": 4, "width": 3},
+        "action": {"text": _("Action"), "order": 5, "width": 2},
     }
 
     search_config_name = "JOBS_SEARCH"
     search_sort_config_name = "JOBS_SORT_OPTIONS"
     search_facets_config_name = "JOBS_FACETS"
-
-    actions = {
-        # "settings": {
-        #     "text": "Settings",
-        #     "payload_schema": None,
-        #     "order": 1,
-        #     "icon": "star",
-        # },
-        "schedule": {
-            "text": "Schedule",
-            "payload_schema": None,
-            "order": 2,
-        },
-        "run": {
-            "text": "Run Now",
-            "payload_schema": None,
-            "order": 2,
-        },
-    }
 
 
 class JobsDetailsView(AdminResourceListView):
@@ -91,26 +73,9 @@ class JobsDetailsView(AdminResourceListView):
         "duration": {"text": _("Duration"), "order": 2, "width": 2},
         "message": {"text": _("Message"), "order": 3, "width": 10},
         "user": {"text": _("Started by"), "order": 4, "width": 2},
+        "action": {"text": _("Action"), "order": 5, "width": 2},
     }
 
     search_config_name = "JOBS_SEARCH"
     search_sort_config_name = "JOBS_SORT_OPTIONS"
     search_facets_config_name = "JOBS_FACETS"
-
-    actions = {
-        # "settings": {
-        #     "text": "Settings",
-        #     "payload_schema": None,
-        #     "order": 1,
-        # },
-        "schedule": {
-            "text": "Schedule",
-            "payload_schema": None,
-            "order": 2,
-        },
-        "run": {
-            "text": "Run Now",
-            "payload_schema": None,
-            "order": 2,
-        },
-    }

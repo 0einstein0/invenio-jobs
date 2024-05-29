@@ -45,7 +45,7 @@ class SearchResultItemComponent extends Component {
             color="grey"
             value={result.active === false}
           />
-          <a href={result.links.admin_self_html}>
+          <a href={result.links.self}>
             {result.created.slice(0, 16)}
           </a>
         </Table.Cell>
