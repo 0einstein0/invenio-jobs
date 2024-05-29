@@ -8,7 +8,7 @@
 
 """Invenio administration view module."""
 
-from invenio_administration.views.base import AdminResourceListView
+from invenio_administration.views.base import AdminResourceListView, AdminResourceEditView, AdminResourceDetailView, AdminResourceCreateView
 from invenio_i18n import lazy_gettext as _
 
 
@@ -25,18 +25,18 @@ class JobsListView(AdminResourceListView):
     pid_path = "id"
     icon = "settings"
     template = "invenio_jobs/system/jobs/jobs-search.html"
+    create_view_name = "jobs-create"
 
     display_search = False
     display_delete = False
-    display_create = False
-    display_edit = False
+    display_create = True
+    display_edit = True
 
     item_field_list = {
         "job": {"text": _("Jobs"), "order": 1, "width": 3},
         "last_run_start_time": {"text": _("Last run"), "order": 2, "width": 3},
         "user": {"text": _("Started by"), "order": 3, "width": 3},
         "next_run": {"text": _("Next run"), "order": 4, "width": 3},
-        "action": {"text": _("Action"), "order": 5, "width": 2},
     }
 
     search_config_name = "JOBS_SEARCH"
@@ -44,7 +44,7 @@ class JobsListView(AdminResourceListView):
     search_facets_config_name = "JOBS_FACETS"
 
 
-class JobsDetailsView(AdminResourceListView):
+class JobsDetailsView(AdminResourceDetailView):
     """Configuration for Jobs detail view which shows runs."""
 
     def get_api_endpoint(self, pid_value=None):
@@ -59,10 +59,10 @@ class JobsDetailsView(AdminResourceListView):
     disabled = lambda _: True
 
     template = "invenio_jobs/system/jobs/jobs-details.html"
-    display_delete = False
-    display_edit = False
+    display_delete = True
     display_search = False
-    display_create = False
+    display_edit = True
+    display_create = True
 
     list_view_name = "jobs"
     pid_path = "id"
@@ -73,9 +73,63 @@ class JobsDetailsView(AdminResourceListView):
         "duration": {"text": _("Duration"), "order": 2, "width": 2},
         "message": {"text": _("Message"), "order": 3, "width": 10},
         "user": {"text": _("Started by"), "order": 4, "width": 2},
-        "action": {"text": _("Action"), "order": 5, "width": 2},
     }
 
     search_config_name = "JOBS_SEARCH"
     search_sort_config_name = "JOBS_SORT_OPTIONS"
     search_facets_config_name = "JOBS_FACETS"
+
+class JobsEditView(AdminResourceEditView):
+    """Configuration for job edit view."""
+
+    name = "job-edit"
+    url = "/jobs/<pid_value>/edit"
+    resource_config = "jobs_resource"
+    title = "Job Edit"
+    pid_path = "id"
+    api_endpoint = "/jobs"
+    list_view_name = "jobs"
+
+    form_fields = {
+    "title": {
+        "order": 1,
+        "text": _("Title"),
+        "description": _("A title of the job."),
+    },
+    "description": {
+        "order": 2,
+        "text": _("Description"),
+        "description": _("A short description about the job."),
+    },
+    "created": {"order": 5},
+    "updated": {"order": 6},
+    }
+
+
+class JobsCreateView(AdminResourceCreateView):
+    """Configuration for Jobs create view."""
+
+    name = "jobs-create"
+    url = "/jobs/create"
+    resource_config = "jobs_resource"
+    pid_path = "id"
+    api_endpoint = "/jobs"
+    title = "Create Job"
+    template = "invenio_jobs/system/jobs/jobs-create.html"
+    list_view_name = "jobs"
+   
+    form_fields = {
+        "title": {
+            "order": 1,
+            "text": _("Title"),
+            "description": _("A title of the job."),
+        },
+        "description": {
+            "order": 2,
+            "text": _("Description"),
+            "description": _("A short description about the job."),
+        },
+        "created": {"order": 3},
+        "updated": {"order": 4},
+    }
+

@@ -13,13 +13,24 @@ import React, { Component } from "react";
 import { UserListItemCompact, toRelativeTime } from "react-invenio-forms";
 import { withState } from "react-searchkit";
 import { Popup, Table, Button, Icon } from "semantic-ui-react";
-// import { RunButton } from "./RunButton";
+import { RunButton } from "./RunButton";
+import { Actions } from "@js/invenio_administration";
 import { StatusFormatter } from "./StatusFormatter";
+import { AdminUIRoutes } from "@js/invenio_administration/src/routes";
 import { http } from "react-invenio-forms";
 
 class SearchResultItemComponent extends Component {
   render() {
-    const { result } = this.props;
+    const { 
+      title,
+      actions,
+      apiEndpoint,
+      idKeyPath,
+      listUIEndpoint,
+      resourceName,
+      displayDelete,
+      displayEdit,
+      result } = this.props;
 
     return (
       <Table.Row>
@@ -93,7 +104,9 @@ class SearchResultItemComponent extends Component {
             : toRelativeTime(result.next_run, i18next.language) ?? "−"}
         </Table.Cell>
         <Table.Cell collapsing>
-          <Button
+          <Button.Group size="tiny" className="relaxed">
+            {/* <RunButton config={result.default_args} /> */}
+            <Button
             icon
             fluid
             basic
@@ -105,7 +118,19 @@ class SearchResultItemComponent extends Component {
             <Icon name="play" />
             Run
           </Button>
-          {/* <RunButton jobId={result.id} config={result.default_args ?? {}} /> */}
+            <Actions
+              title={title}
+              resourceName={resourceName}
+              apiEndpoint={apiEndpoint}
+              editUrl={AdminUIRoutes.editView(listUIEndpoint, result, idKeyPath)}
+              actions={actions}
+              displayEdit={displayEdit}
+              displayDelete={displayDelete}
+              resource={result}
+              idKeyPath={idKeyPath}
+              listUIEndpoint={listUIEndpoint}
+            />
+          </Button.Group>
         </Table.Cell>
       </Table.Row>
     );
