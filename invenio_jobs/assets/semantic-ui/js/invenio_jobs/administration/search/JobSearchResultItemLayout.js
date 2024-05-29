@@ -28,13 +28,14 @@ class SearchResultItemComponent extends Component {
           collapsing
           className="word-break-all"
         >
+          <a href={`/administration/jobs/${result.id}`}>{result.title}</a>
+          &nbsp;
           <BoolFormatter
             tooltip={i18next.t("Inactive")}
             icon="ban"
             color="grey"
             value={result.active === false}
           />
-          <a href={`/administration/jobs/${result.id}`}>{result.title}</a>
         </Table.Cell>
         <Table.Cell
           key={`job-last-run-${result.created}`}
@@ -44,7 +45,7 @@ class SearchResultItemComponent extends Component {
         >
           {result.last_run && (
             <StatusFormatter status={result.last_run.status} />
-          )} 
+          )}
           {result.last_run ? (
             <Popup
               content={result.last_run.created}
