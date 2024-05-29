@@ -28,7 +28,7 @@ class SearchResultItemComponent extends Component {
           className="word-break-all"
         >
           <BoolFormatter
-            tooltip={i18next.t("Active")}
+            tooltip={i18next.t("Inactive")}
             icon="spinner"
             color="grey"
             value={result.started_at === null}

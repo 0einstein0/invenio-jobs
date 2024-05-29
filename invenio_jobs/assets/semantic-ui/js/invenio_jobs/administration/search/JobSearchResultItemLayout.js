@@ -22,30 +22,17 @@ class SearchResultItemComponent extends Component {
     return (
       <Table.Row>
         <Table.Cell
-          key={`job-active-${result.active}`}
-          data-label={i18next.t("Active")}
+          key={`job-name-${result.title}`}
+          data-label={i18next.t("Name")}
           collapsing
-          className=""
+          className="word-break-all"
         >
-          <BoolFormatter
-            tooltip={i18next.t("Active")}
-            icon="check"
-            color="green"
-            value={result.active === true}
-          />
           <BoolFormatter
             tooltip={i18next.t("Inactive")}
             icon="ban"
             color="grey"
             value={result.active === false}
           />
-        </Table.Cell>
-        <Table.Cell
-          key={`job-name-${result.title}`}
-          data-label={i18next.t("Name")}
-          collapsing
-          className="word-break-all"
-        >
           <a href={`/administration/jobs/${result.id}`}>{result.title}</a>
         </Table.Cell>
         <Table.Cell
@@ -111,7 +98,9 @@ class SearchResultItemComponent extends Component {
           data-label={i18next.t("Next run")}
           className="word-break-all"
         >
-          {toRelativeTime(result.next_run, i18next.language) ?? "−"}
+          {result.active === false
+            ? "Inactive"
+            : toRelativeTime(result.next_run, i18next.language) ?? "−"}
         </Table.Cell>
         <Table.Cell collapsing>
           <SystemJobActions runArgs={result.default_args ?? {}} />

@@ -32,11 +32,10 @@ class JobsListView(AdminResourceListView):
     display_edit = False
 
     item_field_list = {
-        "active": {"text": _("Active"), "order": 1, "width": 1},
-        "job": {"text": _("Jobs"), "order": 2, "width": 3},
-        "last_run_start_time": {"text": _("Last run"), "order": 3, "width": 3},
-        "user": {"text": _("Started by"), "order": 4, "width": 3},
-        "next_run": {"text": _("Next run"), "order": 5, "width": 3},
+        "job": {"text": _("Jobs"), "order": 1, "width": 3},
+        "last_run_start_time": {"text": _("Last run"), "order": 2, "width": 3},
+        "user": {"text": _("Started by"), "order": 3, "width": 3},
+        "next_run": {"text": _("Next run"), "order": 4, "width": 3},
     }
 
     search_config_name = "JOBS_SEARCH"
