@@ -92,7 +92,7 @@ class SearchResultItemComponent extends Component {
             : toRelativeTime(result.next_run, i18next.language) ?? "−"}
         </Table.Cell>
         <Table.Cell collapsing>
-          <RunButton config={result.default_args} />
+          <RunButton config={result.default_args ?? {}} />
         </Table.Cell>
       </Table.Row>
     );
