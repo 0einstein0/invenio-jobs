@@ -1,4 +1,4 @@
-import { RunButton } from "./RunButton";
+import { RunButton } from "../components/RunButton";
 import React from "react";
 import ReactDOM from "react-dom";
 

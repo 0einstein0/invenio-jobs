@@ -12,8 +12,8 @@ import React, { Component } from "react";
 import { UserListItemCompact, toRelativeTime } from "react-invenio-forms";
 import { withState } from "react-searchkit";
 import { Table } from "semantic-ui-react";
-import { StatusFormatter } from "./StatusFormatter";
-import { SystemRunActions } from "./SystemRunActions";
+import { StatusFormatter } from "../components/StatusFormatter";
+import { SystemRunActions } from "../components/SystemRunActions";
 
 class SearchResultItemComponent extends Component {
   render() {

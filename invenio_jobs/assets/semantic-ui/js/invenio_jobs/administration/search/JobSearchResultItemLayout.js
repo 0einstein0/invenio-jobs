@@ -12,16 +12,15 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { UserListItemCompact, toRelativeTime } from "react-invenio-forms";
 import { withState } from "react-searchkit";
-import { Popup, Table, Button, Icon } from "semantic-ui-react";
-import { RunButton } from "./RunButton";
+import { Popup, Table, Button, Icon, Modal } from "semantic-ui-react";
 import { Actions } from "@js/invenio_administration";
-import { StatusFormatter } from "./StatusFormatter";
+import { StatusFormatter } from "../components/StatusFormatter";
 import { AdminUIRoutes } from "@js/invenio_administration/src/routes";
 import { http } from "react-invenio-forms";
 
 class SearchResultItemComponent extends Component {
   render() {
-    const { 
+    const {
       title,
       actions,
       apiEndpoint,
@@ -30,8 +29,11 @@ class SearchResultItemComponent extends Component {
       resourceName,
       displayDelete,
       displayEdit,
-      result } = this.props;
+      result,
+    } = this.props;
 
+    // eslint-disable-next-line no-debugger
+    debugger;
     return (
       <Table.Row>
         <Table.Cell
@@ -41,12 +43,24 @@ class SearchResultItemComponent extends Component {
           className="word-break-all"
         >
           <a href={`/administration/jobs/${result.id}`}>{result.title}</a>
-          &nbsp;
+        </Table.Cell>
+        <Table.Cell
+          key={`job-status-${result.active}`}
+          data-label={i18next.t("Active")}
+          collapsing
+          className="word-break-all"
+        >
           <BoolFormatter
             tooltip={i18next.t("Inactive")}
             icon="ban"
             color="grey"
             value={result.active === false}
+          />
+          <BoolFormatter
+            tooltip={i18next.t("Active")}
+            icon="check"
+            color="green"
+            value={result.active === true}
           />
         </Table.Cell>
         <Table.Cell
@@ -105,24 +119,25 @@ class SearchResultItemComponent extends Component {
         </Table.Cell>
         <Table.Cell collapsing>
           <Button.Group size="tiny" className="relaxed">
-            {/* <RunButton config={result.default_args} /> */}
             <Button
-            icon
-            fluid
-            basic
-            labelPosition="left"
-            onClick={() => {
-              http.post("/api/jobs/" + result.id + "/runs");
-            }}
-          >
-            <Icon name="play" />
-            Run
-          </Button>
+              icon
+              labelPosition="left"
+              onClick={() => {
+                http.post("/api/jobs/" + result.id + "/runs");
+              }}
+            >
+              <Icon name="play" />
+              Run
+            </Button>
             <Actions
               title={title}
               resourceName={resourceName}
               apiEndpoint={apiEndpoint}
-              editUrl={AdminUIRoutes.editView(listUIEndpoint, result, idKeyPath)}
+              editUrl={AdminUIRoutes.editView(
+                listUIEndpoint,
+                result,
+                idKeyPath
+              )}
               actions={actions}
               displayEdit={displayEdit}
               displayDelete={displayDelete}
